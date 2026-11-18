@@ -1,0 +1,1689 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الامتحان الأول - المعلم محمد تيسير الخرشة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #f4f7fb;
+            --bg-card: #ffffff;
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --primary-light: #eff6ff;
+            --secondary: #0f172a;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --success: #16a34a;
+            --success-bg: #dcfce7;
+            --danger: #dc2626;
+            --danger-bg: #fee2e2;
+            --warning: #d97706;
+            --warning-bg: #fef3c7;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        input, textarea {
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 850px;
+            background: var(--bg-card);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        /* Header Banner */
+        .top-banner {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: white;
+            padding: 24px 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .top-banner h1 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .top-banner p {
+            font-size: 1.05rem;
+            opacity: 0.95;
+            font-weight: 600;
+        }
+
+        .badge-info {
+            display: inline-flex;
+            gap: 12px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(4px);
+            padding: 4px 14px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* Sections */
+        .section {
+            display: none;
+            padding: 32px;
+            animation: fadeIn 0.35s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Cover / Login Screen */
+        .welcome-box {
+            max-width: 480px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .welcome-box h2 {
+            font-size: 1.4rem;
+            color: var(--secondary);
+            margin-bottom: 8px;
+        }
+
+        .welcome-box .subtitle {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+        }
+
+        .rules-box {
+            background: var(--primary-light);
+            border: 1px solid #bfdbfe;
+            border-radius: 12px;
+            padding: 16px;
+            text-align: right;
+            margin-bottom: 24px;
+            font-size: 0.9rem;
+        }
+
+        .rules-box h4 {
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .rules-box ul {
+            padding-right: 20px;
+            color: #1e3a8a;
+        }
+
+        .rules-box li {
+            margin-bottom: 4px;
+        }
+
+        .form-group {
+            text-align: right;
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--secondary);
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            outline: none;
+            background: #f8fafc;
+        }
+
+        .input-field:focus {
+            border-color: var(--primary);
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+        }
+
+        .error-msg {
+            color: var(--danger);
+            font-size: 0.88rem;
+            font-weight: 700;
+            margin-top: 6px;
+            display: none;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 13px 24px;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            width: 100%;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background: white;
+            color: var(--text-main);
+            border: 2px solid var(--border-color);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .btn-teacher {
+            margin-top: 16px;
+            width: 100%;
+            background: #f1f5f9;
+            color: #334155;
+            border: 1px solid #cbd5e1;
+            font-size: 0.95rem;
+        }
+
+        .btn-teacher:hover {
+            background: #e2e8f0;
+            color: #0f172a;
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #15803d;
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+
+        /* Exam Interface */
+        .exam-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+
+        .student-tag {
+            font-weight: 700;
+            color: var(--primary);
+            background: var(--primary-light);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+        }
+
+        .counter-tag {
+            font-weight: 800;
+            background: #f1f5f9;
+            padding: 6px 16px;
+            border-radius: 8px;
+            color: var(--secondary);
+            font-size: 0.95rem;
+        }
+
+        .cheat-badge {
+            background: var(--warning-bg);
+            color: var(--warning);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 24px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #2563eb, #3b82f6);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* English Content Area (LTR) */
+        .english-area {
+            direction: ltr;
+            text-align: left;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .reading-passage {
+            background: #f8fafc;
+            border-left: 4px solid var(--primary);
+            border-top: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 18px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 0.98rem;
+            line-height: 1.75;
+            color: #1e293b;
+        }
+
+        .reading-label {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 2px 10px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .question-text {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .question-text u strong, .reading-passage u strong {
+            color: #1d4ed8;
+            text-decoration: underline;
+            text-decoration-thickness: 2px;
+            text-underline-offset: 3px;
+            font-weight: 700;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+
+        .option-card {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 18px;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: #ffffff;
+        }
+
+        .option-card:hover {
+            border-color: #93c5fd;
+            background: #f8fafc;
+        }
+
+        .option-card.selected {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.12);
+        }
+
+        .option-letter {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: #f1f5f9;
+            color: var(--secondary);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.2s;
+        }
+
+        .option-card.selected .option-letter {
+            background: var(--primary);
+            color: white;
+        }
+
+        .option-text {
+            font-size: 1rem;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .nav-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* Quick Question Navigator */
+        .q-dots-wrapper {
+            margin-top: 22px;
+            padding-top: 16px;
+            border-top: 1px dashed var(--border-color);
+        }
+
+        .q-dots-title {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .q-dots {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .q-dot {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: #f8fafc;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            transition: all 0.15s;
+        }
+
+        .q-dot.answered {
+            background: #dbeafe;
+            border-color: #93c5fd;
+            color: var(--primary);
+        }
+
+        .q-dot.current {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: scale(1.08);
+        }
+
+        /* Result Screen */
+        .score-card {
+            text-align: center;
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border: 2px solid #bfdbfe;
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 28px;
+        }
+
+        .score-circle {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: white;
+            border: 6px solid var(--primary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.15);
+        }
+
+        .score-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1.1;
+        }
+
+        .score-total {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+
+        .review-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .review-item {
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 18px;
+            background: #ffffff;
+            direction: ltr;
+            text-align: left;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .review-item.correct {
+            border-left: 5px solid var(--success);
+            background: #f0fdf4;
+        }
+
+        .review-item.wrong {
+            border-left: 5px solid var(--danger);
+            background: #fef2f2;
+        }
+
+        .review-q {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #0f172a;
+        }
+
+        .review-ans {
+            font-size: 0.9rem;
+            margin-top: 4px;
+        }
+
+        /* Teacher Dashboard */
+        .teacher-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 14px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: right;
+            font-size: 0.95rem;
+        }
+
+        th, td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background: #f1f5f9;
+            font-weight: 800;
+            color: var(--secondary);
+        }
+
+        tr:hover {
+            background: #f8fafc;
+        }
+
+        /* Modal for Teacher Password & Anti-Cheat Warning */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(4px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            z-index: 9999;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-box {
+            background: white;
+            width: 100%;
+            max-width: 420px;
+            border-radius: 16px;
+            padding: 26px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            animation: fadeIn 0.25s ease;
+        }
+
+        .modal-box h3 {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .modal-actions .btn {
+            flex: 1;
+        }
+
+        .db-status {
+            font-size: 0.82rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 14px;
+            display: inline-block;
+            font-weight: 700;
+        }
+
+        @media (max-width: 600px) {
+            .section {
+                padding: 20px 16px;
+            }
+            .top-banner h1 {
+                font-size: 1.4rem;
+            }
+            .nav-controls {
+                flex-direction: column-reverse;
+            }
+            .nav-controls .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="top-banner">
+            <h1>الامتحان الأول - اللغة الإنجليزية (Unit Three)</h1>
+            <p>إعداد المعلم: محمد تيسير الخرشة</p>
+            <div class="badge-info">
+                <span class="badge">الصف الثاني عشر (Grade 12)</span>
+                <span class="badge">عدد الأسئلة: 47</span>
+                <span class="badge">العلامة الكلية: 100</span>
+            </div>
+        </div>
+
+        <!-- 1. Cover / Login Section -->
+        <div id="coverSection" class="section active">
+            <div class="welcome-box">
+                <h2>مرحباً بك في بوابة الامتحان الإلكتروني</h2>
+                <p class="subtitle">يرجى إدخال اسمك الكامل للبدء في الامتحان</p>
+
+                <div class="rules-box">
+                    <h4>تعليمات هامة قبل البدء:</h4>
+                    <ul>
+                        <li>لا يمكن دخول الامتحان دون كتابة اسم الطالب بشكل واضح.</li>
+                        <li>يتم ترتيب الأسئلة عشوائياً في كل محاولة، ويظهر سؤال واحد في كل صفحة.</li>
+                        <li>يمكنك التنقل بحرية بين الأسئلة (السابق / التالي) ومراجعتها قبل التسليم.</li>
+                        <li><strong>نظام منع الغش مفعل:</strong> يُمنع الخروج من صفحة الامتحان أو فتح نوافذ أخرى أو النسخ أثناء الحل.</li>
+                    </ul>
+                </div>
+
+                <div class="form-group">
+                    <label for="studentNameInput">اسم الطالب الرباعي:</label>
+                    <input type="text" id="studentNameInput" class="input-field" placeholder="اكتب اسمك الكامل هنا..." autocomplete="off">
+                    <div id="nameError" class="error-msg">⚠️ يرجى إدخال اسم الطالب أولاً للتمكن من دخول الامتحان!</div>
+                </div>
+
+                <button type="button" id="startExamBtn" class="btn btn-primary">
+                    🚀 ابدأ الامتحان الآن
+                </button>
+
+                <button type="button" id="openTeacherModalBtn" class="btn btn-teacher">
+                    🔐 لوحة المعلم (نتائج الطلاب)
+                </button>
+            </div>
+        </div>
+
+        <!-- 2. Exam Section -->
+        <div id="examSection" class="section">
+            <div class="exam-header">
+                <div class="student-tag" id="displayStudentName">الطالب: -</div>
+                <div class="counter-tag" id="questionCounter">السؤال 1 من 47</div>
+                <div class="cheat-badge" id="cheatCounter">تنبيهات الغش: 0 / 3</div>
+            </div>
+
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+
+            <!-- Question Content -->
+            <div class="english-area">
+                <div id="passageContainer" class="reading-passage" style="display: none;">
+                    <div class="reading-label">Read the text carefully:</div>
+                    <div id="passageText"></div>
+                </div>
+
+                <div class="question-text" id="questionText"></div>
+
+                <div class="options-list" id="optionsContainer"></div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="nav-controls">
+                <button type="button" id="prevBtn" class="btn btn-outline">➡️ السؤال السابق</button>
+                <button type="button" id="nextBtn" class="btn btn-primary" style="width: auto; min-width: 160px;">السؤال التالي ⬅️</button>
+                <button type="button" id="submitExamBtn" class="btn btn-success" style="display: none; min-width: 180px;">✅ إنهاء وتسليم الامتحان</button>
+            </div>
+
+            <!-- Quick Question Jump Grid -->
+            <div class="q-dots-wrapper">
+                <div class="q-dots-title">الانتقال السريع بين الأسئلة (الأزرق الفاتح = تمت الإجابة):</div>
+                <div class="q-dots" id="questionDots"></div>
+            </div>
+        </div>
+
+        <!-- 3. Result & Review Section -->
+        <div id="resultSection" class="section">
+            <div class="score-card">
+                <h2 id="resultStudentName" style="margin-bottom: 14px; color: var(--secondary);">نتيجة الطالب</h2>
+                <div class="score-circle">
+                    <span class="score-number" id="finalScoreText">0</span>
+                    <span class="score-total">من 100</span>
+                </div>
+                <p id="resultSummaryText" style="font-weight: 700; font-size: 1.05rem; color: var(--text-main);"></p>
+                <p id="saveStatusMsg" style="font-size: 0.85rem; color: var(--success); margin-top: 8px; font-weight: 600;"></p>
+                <button type="button" onclick="location.reload()" class="btn btn-outline" style="margin-top: 16px;">🏠 العودة للصفحة الرئيسية</button>
+            </div>
+
+            <h3 style="margin-bottom: 12px; color: var(--secondary);">📋 مراجعة الإجابات والحلول الصحيحة:</h3>
+            <div class="review-list" id="reviewContainer"></div>
+        </div>
+
+        <!-- 4. Teacher Dashboard Section -->
+        <div id="teacherSection" class="section">
+            <div class="teacher-header">
+                <div>
+                    <h2 style="color: var(--secondary);">📊 لوحة المعلم - سجل نتائج الطلاب</h2>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">المعلم: محمد تيسير الخرشة</p>
+                </div>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                    <button type="button" id="refreshResultsBtn" class="btn btn-outline" style="padding: 8px 14px; font-size: 0.9rem;">🔄 تحديث</button>
+                    <button type="button" id="clearResultsBtn" class="btn btn-danger" style="padding: 8px 14px; font-size: 0.9rem;">🗑️ مسح السجل</button>
+                    <button type="button" id="exitTeacherBtn" class="btn btn-primary" style="padding: 8px 14px; font-size: 0.9rem; width: auto;">خروج</button>
+                </div>
+            </div>
+
+            <div id="firebaseConnectionBadge" class="db-status"></div>
+
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>اسم الطالب</th>
+                            <th>العلامة (من 100)</th>
+                            <th>الإجابات الصحيحة</th>
+                            <th>محاولات الغش</th>
+                            <th>وقت التسليم</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultsTableBody">
+                        <tr>
+                            <td colspan="6" style="text-align: center; padding: 24px;">جاري تحميل النتائج...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Teacher Password Modal -->
+    <div id="teacherPasswordModal" class="modal-overlay">
+        <div class="modal-box">
+            <h3>🔐 دخول لوحة المعلم</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px;">يرجى إدخال الرمز السري للمعلم لعرض النتائج</p>
+            <input type="password" id="teacherPassInput" class="input-field" placeholder="أدخل الرمز السري..." style="text-align: center; direction: ltr;">
+            <div id="teacherPassError" class="error-msg">❌ الرمز السري غير صحيح!</div>
+            <div class="modal-actions">
+                <button type="button" id="confirmTeacherPassBtn" class="btn btn-primary">دخول</button>
+                <button type="button" id="cancelTeacherPassBtn" class="btn btn-outline">إلغاء</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Anti-Cheat Warning Modal -->
+    <div id="cheatWarningModal" class="modal-overlay">
+        <div class="modal-box" style="border-top: 6px solid var(--danger);">
+            <h3 style="color: var(--danger);">⚠️ تحذير نظام منع الغش!</h3>
+            <p id="cheatWarningText" style="margin: 12px 0; font-weight: 600;"></p>
+            <button type="button" id="closeCheatModalBtn" class="btn btn-danger" style="width: 100%;">فهمت، العودة للامتحان</button>
+        </div>
+    </div>
+
+    <!-- Firebase SDK (Compat for easy single-file deployment) -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+    <script>
+        // ==========================================
+        // 1. إعدادات Firebase Realtime Database
+        // ضع رابط قاعدة البيانات الخاصة بك في الأسفل مكان الرابط الافتراضي
+        // ==========================================
+        const firebaseConfig = {
+            databaseURL: "https://YOUR-PROJECT-ID-default-rtdb.firebaseio.com"
+        };
+
+        let db = null;
+        let isFirebaseConfigured = false;
+
+        try {
+            if (firebaseConfig.databaseURL && !firebaseConfig.databaseURL.includes("YOUR-PROJECT-ID")) {
+                firebase.initializeApp(firebaseConfig);
+                db = firebase.database();
+                isFirebaseConfigured = true;
+            }
+        } catch (err) {
+            console.warn("Firebase initialization fallback to local storage:", err);
+        }
+
+        // ==========================================
+        // 2. بنك الأسئلة الكامل (47 سؤالاً من الملف مع النصوص والتنسيق)
+        // ==========================================
+        const passages = {
+            p1: `Most people think that economics is all about money, but in fact, it's far broader than that. Economics is really all about making choices and decisions. These might indeed be related to money. For example, is it more economical to go to a cheaper supermarket if a taxi there and back needs to be included in the cost? However, economic principles, especially those of behavioral economics, can be usefully applied to all areas of our lives.`,
+            p2: `Possibly, the first thing we can take from economics is the importance of doing a cost-benefit analysis when making big decisions. Comfortable though we may be with making a list of pros and cons, we should recognise that it is actually a rather ineffective tool. Just one of the cons might easily outweigh all of the pros. A cost-benefit analysis is something altogether more sophisticated, which allows you to be more objective. For example, let's say that you have to decide whether to make a journey by train or aeroplane. The financial cost of each journey is obvious, but there are also other costs to take into account, such as the cost in your time, the cost in terms of how tired you'll be on arrival, the environmental cost and so on. Give each of these a score out of five, and then weigh <u><strong>them</strong></u> up against the potential benefits, scored in the same way, and the choice becomes much easier.`,
+            p3: `There are also certain in-built human biases we ought to bear in mind, for example, something known as 'present bias'. Behavioral economics teaches us that people have a tendency to overvalue immediate rewards over long-term payoffs. A famous study showed that given the choice between receiving less money now, or more money later, most people would choose the former, even though they'd end up less well-off. This is also the reason why people procrastinate, or why you should never go food shopping when you're hungry. Once aware of this propensity however, you can make sure you avoid it. For example, if you put your money in a savings account where you can't get at it easily, you'll overcome the tendency to want to spend it straightaway, rather than wait.`,
+            p4: `Another trap many people fall into is the sunk-cost fallacy. A fallacy is an idea that is often believed to be true, but which is, in fact, false. The sunk-cost fallacy is the idea that because you have already invested time or money in something, you should persist with it no matter what.`,
+            p5: `One study which demonstrated this tendency asked people to imagine they were at a birthday celebration and that they were offered chocolate cake. The researchers told some people this was from a local supermarket, and others that it was an expensive handmade cake from a shop almost an hour away. Having been told the cake had required a significant investment of time and money seemed to make people much more likely to eat it all, even though they felt uncomfortably full, or weren't that keen on chocolate cake. The sunk-cost fallacy often leads us to do things which are really against our best interests. For example, maintaining a friendship with someone we don't really like anymore, because we have known them a long time, and feel that nothing can be done about it. Or persisting with a business idea, even when it isn't working and is actually losing us money. Our decision-making ability can be dramatically improved by recognising when we may be falling prey to this fallacy.`,
+            p6: `Even when we've made a good decision, we should also be aware of the law of diminishing returns. This economic concept states that after a certain point, investing more money (or effort) does not lead to increased benefits, and, notwithstanding the objective risk, may even have an adverse impact. For example, if you get your friends round to help you decorate your room. To begin with, having more people to help seems constructive, but if you invite too many friends round, you'll end up with a problem: imagine 20 or 30 people all trying to paint the same room at the same time! This law can also be applied to eating pizza; the first few slices are great, but after that, it becomes less and less palatable, and if you kept going, you might even feel nauseous. This principle might seem obvious, but it is really a reminder that doing your best is good enough. If you keep pushing and trying to do even more, you'll end up subject to the law of diminishing returns.`,
+            p7: `Finally, be aware that, according to economists, there's no such thing as a free lunch. Apparently, this expression comes from a time when it was common to give away lunch when you bought a soft drink. The lunch would be made as salty as possible, so you'd end up spending far more than anticipated on (expensive) beverages. Nowadays, it's worth considering this concept when it comes to free social media sites: watch for the snare if you aren't paying for a product, you ARE the product.`
+        };
+
+        const rawQuestions = [
+            {
+                id: 1,
+                passage: passages.p1,
+                question: `How is economics defined according to the paragraph above?`,
+                options: [
+                    "As a science concerned exclusively with banking and cash.",
+                    "As a field much broader than money, focusing fundamentally on choices and decisions.",
+                    "As a set of rules for avoiding public transportation costs.",
+                    "As a branch of psychology unrelated to daily life."
+                ],
+                correct: 1
+            },
+            {
+                id: 2,
+                passage: passages.p2,
+                question: `In the paragraph above, what does the pronoun <u><strong>"them"</strong></u> (in "and then weigh <u><strong>them</strong></u> up") refer to?`,
+                options: [
+                    "Big decisions",
+                    "Potential benefits",
+                    "The other costs (time, tiredness, environmental cost, etc.)",
+                    "Journey choices"
+                ],
+                correct: 2
+            },
+            {
+                id: 3,
+                passage: passages.p3,
+                question: `What is the primary psychological effect of <u><strong>"present bias"</strong></u> on human behavior according to the text above?`,
+                options: [
+                    "It encourages people to save money for long-term investments.",
+                    "It causes individuals to overvalue immediate rewards over long-term payoffs, leading to procrastination.",
+                    "It entirely prevents emotional or impulsive decisions.",
+                    "It forces people to shop only when they are completely full."
+                ],
+                correct: 1
+            },
+            {
+                id: 4,
+                passage: passages.p4,
+                question: `What does the <u><strong>"sunk-cost fallacy"</strong></u> lead people to believe according to the paragraph above?`,
+                options: [
+                    "That past investments of time or money mean you should persist with something no matter what.",
+                    "That all investments should be canceled at the very first sign of trouble.",
+                    "That traditional pros and cons lists are mathematically perfect.",
+                    "That free products always carry hidden financial fees."
+                ],
+                correct: 0
+            },
+            {
+                id: 5,
+                passage: passages.p5,
+                question: `In the paragraph above, what does the pronoun <u><strong>"it"</strong></u> (in "even when <u><strong>it</strong></u> isn't working and is actually losing us money") refer to?`,
+                options: [
+                    "The friendship",
+                    "A business idea",
+                    "The chocolate cake",
+                    "The sunk-cost fallacy"
+                ],
+                correct: 1
+            },
+            {
+                id: 6,
+                passage: passages.p6,
+                question: `What does the <u><strong>"law of diminishing returns"</strong></u> state about investing extra money or effort after a certain point?`,
+                options: [
+                    "It guarantees exponential success and maximum productivity.",
+                    "It does not lead to increased benefits and may even cause adverse impacts.",
+                    "It eliminates all objective risks in daily decision-making.",
+                    "It forces friends to collaborate more efficiently."
+                ],
+                correct: 1
+            },
+            {
+                id: 7,
+                passage: passages.p7,
+                question: `What is the underlying meaning of the phrase <u><strong>"if you aren't paying for a product, you ARE the product"</strong></u> regarding free social media sites?`,
+                options: [
+                    "Users get completely free services without any compromise.",
+                    "Platforms trade user attention, data, and engagement instead of direct monetary fees.",
+                    "Social media companies lose money on every active account.",
+                    "Free lunches are provided to active online users."
+                ],
+                correct: 1
+            },
+            {
+                id: 8,
+                question: `They're giving away free toys with children's meals as a part of a sale ............`,
+                options: ["investment", "gimmick", "start", "buy"],
+                correct: 1
+            },
+            {
+                id: 9,
+                question: `So, what gave you the idea to <u><strong>"start"</strong></u> the business?`,
+                options: ["break into", "pass up", "set up", "sign up"],
+                correct: 2
+            },
+            {
+                id: 10,
+                question: `A feature of a product or service which makes it different from the rest:`,
+                options: ["USP", "venture", "quote", "launch"],
+                correct: 0
+            },
+            {
+                id: 11,
+                question: `The price ............ is missing. How much is it?`,
+                options: ["tag", "quote", "goods", "effective"],
+                correct: 0
+            },
+            {
+                id: 12,
+                question: `Issa took out a loan to set up his business, so now he ............ the bank money every month.`,
+                options: ["refunds", "values", "owes", "budgets"],
+                correct: 2
+            },
+            {
+                id: 13,
+                question: `I'm not always very ............ when I meet new people. It takes me time to feel safe.`,
+                options: ["trusting", "naive", "shrewd", "gullible"],
+                correct: 0
+            },
+            {
+                id: 14,
+                question: `She ............ the child into cleaning her teeth.`,
+                options: ["enticed", "coaxed", "incited", "urged"],
+                correct: 1
+            },
+            {
+                id: 15,
+                question: `You can usually find a good price if you ............ for the best deal.`,
+                options: ["mooch around", "run", "shop around", "display"],
+                correct: 2
+            },
+            {
+                id: 16,
+                question: `A new business project that involves taking risks:`,
+                options: ["bespoke", "venture", "turnover", "cost-effective"],
+                correct: 1
+            },
+            {
+                id: 17,
+                question: `They ............ her into leaving her job with promises of a better salary.`,
+                options: ["cajoled", "urged", "enticed", "coaxed"],
+                correct: 2
+            },
+            {
+                id: 18,
+                question: `He was wearing a ............ suit which clearly wasn't cheap.`,
+                options: ["bespoke", "bargain basement", "concept", "launching"],
+                correct: 0
+            },
+            {
+                id: 19,
+                question: `Suha made so much money in her business that she ............ her younger brother's new business.`,
+                options: ["discounted", "financed", "budgeted", "refunded"],
+                correct: 1
+            },
+            {
+                id: 20,
+                question: `Just one of the cons might easily <u><strong>"outweigh"</strong></u> all the pros.`,
+                options: ["add up", "cancel out", "increase", "improve"],
+                correct: 1
+            },
+            {
+                id: 21,
+                question: `My cousin has always been a ............ businesswoman and runs several companies now.`,
+                options: ["trusting", "naive", "gullible", "shrewd"],
+                correct: 3
+            },
+            {
+                id: 22,
+                question: `It was too good an opportunity to <u><strong>"fail to take advantage of"</strong></u>.`,
+                options: ["set up", "sign up", "break into", "pass up"],
+                correct: 3
+            },
+            {
+                id: 23,
+                question: `The company's profit ............ are low this year, so they will be hoping for better sales next year.`,
+                options: ["spree", "margins", "gimmicks", "impulse"],
+                correct: 1
+            },
+            {
+                id: 24,
+                question: `Another trap is the sunk-cost <u><strong>"fallacy"</strong></u>.`,
+                options: ["pitfall", "way", "advantage", "tool"],
+                correct: 0
+            },
+            {
+                id: 25,
+                question: `In 1925, the Eiffel Tower in Paris was sold to a ............ businessman by Victor Lustig, an American conman.`,
+                options: ["gullible", "naive", "shrewd", "ingenious"],
+                correct: 0
+            },
+            {
+                id: 26,
+                question: `It's much cheaper to ............ in bulk if you have a place to put it.`,
+                options: ["stock up", "go on", "carry", "buy"],
+                correct: 0
+            },
+            {
+                id: 27,
+                question: `If you have positive word-of-............ you may not need to advertise.`,
+                options: ["reputation", "-mouth", "up", "tag"],
+                correct: 1
+            },
+            {
+                id: 28,
+                question: `They are preparing the documents for you.`,
+                options: [
+                    "The documents prepare for you.",
+                    "The documents are being prepare for you.",
+                    "The documents are being prepared for you.",
+                    "The documents were being prepared for you."
+                ],
+                correct: 2
+            },
+            {
+                id: 29,
+                question: `Engineers developed the first fully electric vehicle in 2013.`,
+                options: [
+                    "The first fully electric vehicle develops in 2013.",
+                    "The first fully electric vehicle was develop in 2013.",
+                    "The first fully electric vehicle is developed in 2013.",
+                    "The first fully electric vehicle was developed in 2013."
+                ],
+                correct: 3
+            },
+            {
+                id: 30,
+                question: `They have taken all of your suggestions into account.`,
+                options: [
+                    "All of your suggestions were taken into account.",
+                    "All of your suggestions have been taken into account.",
+                    "All of your suggestions are taken into account.",
+                    "All of your suggestions had been taken into account."
+                ],
+                correct: 1
+            },
+            {
+                id: 31,
+                question: `I expect ............ by my family.`,
+                options: ["to help", "being helped", "to be helped", "help"],
+                correct: 2
+            },
+            {
+                id: 32,
+                question: `I want to clean the car. I want ............`,
+                options: ["the car cleaning", "be cleaned", "to clean by the car", "the car to be cleaned"],
+                correct: 3
+            },
+            {
+                id: 33,
+                question: `Issa is expecting the manager to give him a pay rise.<br>Issa is expecting ............`,
+                options: ["to give a pay rise", "being given a pay rise", "to be given a pay rise", "given a pay rise"],
+                correct: 2
+            },
+            {
+                id: 34,
+                question: `I don't mind you helping me. I don't mind ............`,
+                options: ["being helped", "to be helped", "help me", "helping me"],
+                correct: 0
+            },
+            {
+                id: 35,
+                question: `The kitchen needs cleaning. The kitchen ............`,
+                options: ["needs to be cleaned", "needs cleaning by", "is needing cleaned", "has needed cleaning"],
+                correct: 0
+            },
+            {
+                id: 36,
+                question: `I'd appreciate the concept ............ once again.`,
+                options: ["to explain", "being explained", "explain", "explained"],
+                correct: 1
+            },
+            {
+                id: 37,
+                question: `We will prosecute all shoplifters. All ............`,
+                options: [
+                    "shoplifters prosecuted.",
+                    "shoplifters will be prosecuted.",
+                    "shoplifters have been prosecuted.",
+                    "shoplifters are prosecuting."
+                ],
+                correct: 1
+            },
+            {
+                id: 38,
+                question: `People think that shopping will always be a social experience.<br>It ............`,
+                options: [
+                    "is thinking that shopping will always be a social experience.",
+                    "is thought that shopping will always be a social experience.",
+                    "has been thought that shopping will always be a social experience.",
+                    "was thought that shopping will always be a social experience."
+                ],
+                correct: 1
+            },
+            {
+                id: 39,
+                question: `An unknown person had added too much salt to the food.`,
+                options: [
+                    "Too much salt had been added to the food.",
+                    "Too much salt was added to the food.",
+                    "Too much salt has been added to the food.",
+                    "Too much salt is added to the food."
+                ],
+                correct: 0
+            },
+            {
+                id: 40,
+                question: `People are hardly ever aware of their unconscious biases.`,
+                options: [
+                    "Their unconscious biases are hardly ever aware.",
+                    "Not possible in the passive as there is no main verb.",
+                    "Their unconscious biases hardly ever are aware.",
+                    "Their unconscious biases are hardly ever being aware."
+                ],
+                correct: 1
+            },
+            {
+                id: 41,
+                question: `The crisis will result in closing more and more shops.<br>The crisis will result in ............`,
+                options: [
+                    "more and more shops closed down",
+                    "more and more shops being closed down",
+                    "more and more shops be closed down",
+                    "more and more shops have closed down"
+                ],
+                correct: 1
+            },
+            {
+                id: 42,
+                question: `It is often difficult ............ the outside world when you're in a shopping mall.`,
+                options: ["seeing", "to see", "see", "saw"],
+                correct: 1
+            },
+            {
+                id: 43,
+                question: `This is because they ............ to make people lose track of time.`,
+                options: ["have", "design", "designed", "have been designed"],
+                correct: 3
+            },
+            {
+                id: 44,
+                question: `Designers of early shopping malls simply wanted shopping to ............ as a social event.`,
+                options: ["be experienced", "experiencing", "experience", "experienced"],
+                correct: 0
+            },
+            {
+                id: 45,
+                question: `I have been shown the plans for the new shopping mall.`,
+                options: [
+                    "The plans for the new shopping mall have shown to me.",
+                    "The plans for the new shopping mall has been showing to me.",
+                    "The plans for the new shopping mall was shown to me.",
+                    "The plans for the new shopping mall have been shown to me."
+                ],
+                correct: 3
+            },
+            {
+                id: 46,
+                question: `All the customers were given a freebie.`,
+                options: [
+                    "A freebie were given to all the customers.",
+                    "A freebie was given to all the customers.",
+                    "A freebie was give to all the customers.",
+                    "A freebie gave to all the customers."
+                ],
+                correct: 1
+            },
+            {
+                id: 47,
+                question: `Why is the passive used here? <u><strong>"A fallacy is an idea that is often believed to be true."</strong></u>`,
+                options: [
+                    "We want to sound more objective or talk about general opinions.",
+                    "We want to avoid personal responsibility or blame.",
+                    "We are more interested in the action than who does it.",
+                    "It is better not to start a sentence with a long complex subject."
+                ],
+                correct: 0
+            }
+        ];
+
+        // ==========================================
+        // 3. متغيرات الحالة (State Management)
+        // ==========================================
+        let studentName = "";
+        let shuffledQuestions = [];
+        let currentIndex = 0;
+        let userAnswers = {}; // { questionId: selectedOptionIndex }
+        let isExamActive = false;
+        let isExamSubmitted = false;
+        let cheatWarnings = 0;
+        const MAX_CHEAT_WARNINGS = 3;
+        const TEACHER_CODE = "MK1978mk";
+
+        // ==========================================
+        // 4. دوال التنقل والشاشات
+        // ==========================================
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function shuffleArray(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        // ==========================================
+        // 5. معالجة دخول الطالب (مضمون العمل 100%)
+        // ==========================================
+        const studentNameInput = document.getElementById('studentNameInput');
+        const nameError = document.getElementById('nameError');
+        const startExamBtn = document.getElementById('startExamBtn');
+
+        function startExamHandler() {
+            const nameVal = studentNameInput.value.trim();
+            if (!nameVal || nameVal.length < 2) {
+                nameError.style.display = 'block';
+                studentNameInput.focus();
+                return;
+            }
+
+            nameError.style.display = 'none';
+            studentName = nameVal;
+            shuffledQuestions = shuffleArray(rawQuestions);
+            currentIndex = 0;
+            userAnswers = {};
+            cheatWarnings = 0;
+            isExamActive = true;
+            isExamSubmitted = false;
+
+            document.getElementById('displayStudentName').textContent = `الطالب: ${studentName}`;
+            document.getElementById('cheatCounter').textContent = `تنبيهات الغش: 0 / ${MAX_CHEAT_WARNINGS}`;
+
+            renderQuestionDots();
+            renderCurrentQuestion();
+            showSection('examSection');
+        }
+
+        startExamBtn.addEventListener('click', startExamHandler);
+        studentNameInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                startExamHandler();
+            }
+        });
+
+        // ==========================================
+        // 6. عرض الأسئلة والتنقل بينها (بدون اشتراط الحل)
+        // ==========================================
+        function renderCurrentQuestion() {
+            const q = shuffledQuestions[currentIndex];
+            const total = shuffledQuestions.length;
+
+            // تحديث العداد وشريط التقدم
+            document.getElementById('questionCounter').textContent = `السؤال ${currentIndex + 1} من ${total}`;
+            const progressPercent = ((currentIndex + 1) / total) * 100;
+            document.getElementById('progressBar').style.width = `${progressPercent}%`;
+
+            // إظهار النص القرائي إن وجد فوق السؤال
+            const passageContainer = document.getElementById('passageContainer');
+            const passageText = document.getElementById('passageText');
+            if (q.passage) {
+                passageText.innerHTML = q.passage;
+                passageContainer.style.display = 'block';
+            } else {
+                passageContainer.style.display = 'none';
+                passageText.innerHTML = '';
+            }
+
+            // نص السؤال
+            document.getElementById('questionText').innerHTML = `${currentIndex + 1}. ${q.question}`;
+
+            // الخيارات الأربعة
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+            const letters = ['A', 'B', 'C', 'D'];
+
+            q.options.forEach((optText, idx) => {
+                const card = document.createElement('div');
+                card.className = 'option-card';
+                if (userAnswers[q.id] === idx) {
+                    card.classList.add('selected');
+                }
+
+                card.innerHTML = `
+                    <div class="option-letter">${letters[idx]}</div>
+                    <div class="option-text">${optText}</div>
+                `;
+
+                card.addEventListener('click', () => {
+                    userAnswers[q.id] = idx;
+                    renderCurrentQuestion();
+                    updateQuestionDots();
+                });
+
+                optionsContainer.appendChild(card);
+            });
+
+            // التحكم بأزرار السابق والتالي والتسليم
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const submitBtn = document.getElementById('submitExamBtn');
+
+            prevBtn.style.visibility = currentIndex === 0 ? 'hidden' : 'visible';
+
+            if (currentIndex === total - 1) {
+                nextBtn.style.display = 'none';
+                submitBtn.style.display = 'inline-flex';
+            } else {
+                nextBtn.style.display = 'inline-flex';
+                submitBtn.style.display = 'none';
+            }
+
+            updateQuestionDots();
+        }
+
+        function renderQuestionDots() {
+            const dotsContainer = document.getElementById('questionDots');
+            dotsContainer.innerHTML = '';
+            shuffledQuestions.forEach((q, idx) => {
+                const dot = document.createElement('button');
+                dot.type = 'button';
+                dot.className = 'q-dot';
+                dot.textContent = idx + 1;
+                dot.addEventListener('click', () => {
+                    currentIndex = idx;
+                    renderCurrentQuestion();
+                });
+                dotsContainer.appendChild(dot);
+            });
+        }
+
+        function updateQuestionDots() {
+            const dots = document.querySelectorAll('.q-dot');
+            dots.forEach((dot, idx) => {
+                const qId = shuffledQuestions[idx].id;
+                dot.classList.remove('current', 'answered');
+                if (userAnswers[qId] !== undefined) {
+                    dot.classList.add('answered');
+                }
+                if (idx === currentIndex) {
+                    dot.classList.add('current');
+                }
+            });
+        }
+
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                renderCurrentQuestion();
+            }
+        });
+
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            if (currentIndex < shuffledQuestions.length - 1) {
+                currentIndex++;
+                renderCurrentQuestion();
+            }
+        });
+
+        document.getElementById('submitExamBtn').addEventListener('click', () => {
+            const answeredCount = Object.keys(userAnswers).length;
+            const total = shuffledQuestions.length;
+            if (answeredCount < total) {
+                const confirmSubmit = confirm(`لقد أجبت على ${answeredCount} من أصل ${total} سؤال.\nهل أنت متأكد من رغبتك في تسليم الامتحان الآن؟`);
+                if (!confirmSubmit) return;
+            }
+            finishExam(false);
+        });
+
+        // ==========================================
+        // 7. نظام منع الغش (Anti-Cheat Protection)
+        // ==========================================
+        document.addEventListener('contextmenu', (e) => {
+            if (isExamActive && !isExamSubmitted) {
+                e.preventDefault();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (isExamActive && !isExamSubmitted) {
+                if ((e.ctrlKey || e.metaKey) && ['c', 'v', 'x', 'u', 's', 'p', 'a'].includes(e.key.toLowerCase())) {
+                    e.preventDefault();
+                }
+                if (e.key === 'F12') {
+                    e.preventDefault();
+                }
+            }
+        });
+
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden && isExamActive && !isExamSubmitted) {
+                triggerCheatViolation("تم رصد مغادرتك لصفحة الامتحان أو الانتقال لتطبيق/تبويب آخر!");
+            }
+        });
+
+        function triggerCheatViolation(reason) {
+            cheatWarnings++;
+            document.getElementById('cheatCounter').textContent = `تنبيهات الغش: ${cheatWarnings} / ${MAX_CHEAT_WARNINGS}`;
+
+            if (cheatWarnings >= MAX_CHEAT_WARNINGS) {
+                document.getElementById('cheatWarningModal').classList.remove('active');
+                alert("⛔ تم إنهاء الامتحان تلقائياً لتجاوز الحد الأقصى لمحاولات الغش!");
+                finishExam(true);
+            } else {
+                document.getElementById('cheatWarningText').textContent = `${reason} (تحذير رقم ${cheatWarnings} من ${MAX_CHEAT_WARNINGS} - عند الوصول للتحذير الثالث سيُغلق الامتحان تلقائياً).`;
+                document.getElementById('cheatWarningModal').classList.add('active');
+            }
+        }
+
+        document.getElementById('closeCheatModalBtn').addEventListener('click', () => {
+            document.getElementById('cheatWarningModal').classList.remove('active');
+        });
+
+        // ==========================================
+        // 8. إنهاء الامتحان وحساب النتيجة من 100 وحفظها
+        // ==========================================
+        function finishExam(forcedByCheat = false) {
+            if (isExamSubmitted) return;
+            isExamSubmitted = true;
+            isExamActive = false;
+
+            let correctCount = 0;
+            const total = shuffledQuestions.length;
+            const letters = ['A', 'B', 'C', 'D'];
+            const reviewContainer = document.getElementById('reviewContainer');
+            reviewContainer.innerHTML = '';
+
+            shuffledQuestions.forEach((q, idx) => {
+                const userAnsIdx = userAnswers[q.id];
+                const isCorrect = userAnsIdx === q.correct;
+                if (isCorrect) correctCount++;
+
+                const itemDiv = document.createElement('div');
+                itemDiv.className = `review-item ${isCorrect ? 'correct' : 'wrong'}`;
+
+                const userChoiceText = userAnsIdx !== undefined
+                    ? `${letters[userAnsIdx]}) ${q.options[userAnsIdx]}`
+                    : "No Answer (لم تتم الإجابة)";
+
+                const correctChoiceText = `${letters[q.correct]}) ${q.options[q.correct]}`;
+
+                itemDiv.innerHTML = `
+                    <div class="review-q">${idx + 1}. ${q.question}</div>
+                    <div class="review-ans" style="color: ${isCorrect ? '#15803d' : '#b91c1c'}; font-weight: 600;">
+                        Your Answer: ${userChoiceText} ${isCorrect ? '✅' : '❌'}
+                    </div>
+                    ${!isCorrect ? `<div class="review-ans" style="color: #15803d; font-weight: 700;">Correct Answer: ${correctChoiceText}</div>` : ''}
+                `;
+                reviewContainer.appendChild(itemDiv);
+            });
+
+            // حساب العلامة من 100
+            const scoreOutOf100 = Math.round((correctCount / total) * 100);
+
+            document.getElementById('resultStudentName').textContent = `نتيجة الطالب: ${studentName}`;
+            document.getElementById('finalScoreText').textContent = scoreOutOf100;
+            document.getElementById('resultSummaryText').textContent =
+                `أجبت بشكل صحيح على ${correctCount} سؤالاً من أصل ${total} ${forcedByCheat ? '(تم الإنهاء بسبب تنبيهات الغش)' : ''}`;
+
+            saveResultToDatabase({
+                studentName: studentName,
+                score: scoreOutOf100,
+                correctCount: correctCount,
+                totalQuestions: total,
+                cheatAttempts: cheatWarnings,
+                timestamp: new Date().toLocaleString('ar-JO')
+            });
+
+            showSection('resultSection');
+        }
+
+        function saveResultToDatabase(record) {
+            const statusEl = document.getElementById('saveStatusMsg');
+
+            // حفظ محلي احتياطي دائماً
+            const localRecords = JSON.parse(localStorage.getItem('exam1_results_kharashah') || '[]');
+            localRecords.push(record);
+            localStorage.setItem('exam1_results_kharashah', JSON.stringify(localRecords));
+
+            // حفظ في Firebase Realtime Database إذا تم ربط الرابط
+            if (isFirebaseConfigured && db) {
+                db.ref('exam_results_unit3').push(record)
+                    .then(() => {
+                        statusEl.textContent = "☁️ تم حفظ نتيجتك في قاعدة بيانات المعلم بنجاح.";
+                    })
+                    .catch((err) => {
+                        console.error(err);
+                        statusEl.textContent = "💾 تم حفظ النتيجة محلياً.";
+                    });
+            } else {
+                statusEl.textContent = "💾 تم تسجيل النتيجة في سجل النتائج.";
+            }
+        }
+
+        // ==========================================
+        // 9. لوحة المعلم المشفرة (MK1978mk)
+        // ==========================================
+        const openTeacherModalBtn = document.getElementById('openTeacherModalBtn');
+        const teacherPasswordModal = document.getElementById('teacherPasswordModal');
+        const teacherPassInput = document.getElementById('teacherPassInput');
+        const teacherPassError = document.getElementById('teacherPassError');
+        const confirmTeacherPassBtn = document.getElementById('confirmTeacherPassBtn');
+        const cancelTeacherPassBtn = document.getElementById('cancelTeacherPassBtn');
+
+        openTeacherModalBtn.addEventListener('click', () => {
+            teacherPassInput.value = '';
+            teacherPassError.style.display = 'none';
+            teacherPasswordModal.classList.add('active');
+            setTimeout(() => teacherPassInput.focus(), 100);
+        });
+
+        cancelTeacherPassBtn.addEventListener('click', () => {
+            teacherPasswordModal.classList.remove('active');
+        });
+
+        function verifyTeacherPassword() {
+            const entered = teacherPassInput.value.trim();
+            if (entered === TEACHER_CODE) {
+                teacherPassError.style.display = 'none';
+                teacherPasswordModal.classList.remove('active');
+                loadTeacherDashboard();
+                showSection('teacherSection');
+            } else {
+                teacherPassError.style.display = 'block';
+                teacherPassInput.focus();
+            }
+        }
+
+        confirmTeacherPassBtn.addEventListener('click', verifyTeacherPassword);
+        teacherPassInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                verifyTeacherPassword();
+            }
+        });
+
+        function loadTeacherDashboard() {
+            const tbody = document.getElementById('resultsTableBody');
+            const badge = document.getElementById('firebaseConnectionBadge');
+
+            if (isFirebaseConfigured && db) {
+                badge.textContent = "🟢 متصل بقاعدة بيانات Firebase Realtime Database";
+                badge.style.background = "#dcfce7";
+                badge.style.color = "#15803d";
+
+                db.ref('exam_results_unit3').once('value')
+                    .then(snapshot => {
+                        const data = snapshot.val();
+                        const list = data ? Object.values(data) : [];
+                        renderResultsTable(list);
+                    })
+                    .catch(() => {
+                        const localList = JSON.parse(localStorage.getItem('exam1_results_kharashah') || '[]');
+                        renderResultsTable(localList);
+                    });
+            } else {
+                badge.textContent = "🟡 وضع التخزين المحلي (أضف رابط Firebase في الكود للمزامنة السحابية)";
+                badge.style.background = "#fef3c7";
+                badge.style.color = "#b45309";
+
+                const localList = JSON.parse(localStorage.getItem('exam1_results_kharashah') || '[]');
+                renderResultsTable(localList);
+            }
+        }
+
+        function renderResultsTable(records) {
+            const tbody = document.getElementById('resultsTableBody');
+            if (!records || records.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:24px; color:#64748b;">لا توجد نتائج مسجلة حتى الآن.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = '';
+            records.slice().reverse().forEach((rec, index) => {
+                const tr = document.createElement('tr');
+                const scoreColor = rec.score >= 50 ? '#16a34a' : '#dc2626';
+                tr.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td style="font-weight: 700;">${rec.studentName}</td>
+                    <td style="font-weight: 800; color: ${scoreColor};">${rec.score} / 100</td>
+                    <td>${rec.correctCount} من ${rec.totalQuestions}</td>
+                    <td style="color: ${rec.cheatAttempts > 0 ? '#dc2626' : '#64748b'}; font-weight: 700;">${rec.cheatAttempts || 0}</td>
+                    <td style="font-size: 0.85rem;">${rec.timestamp || '-'}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        document.getElementById('refreshResultsBtn').addEventListener('click', loadTeacherDashboard);
+
+        document.getElementById('clearResultsBtn').addEventListener('click', () => {
+            if (!confirm("هل أنت متأكد من حذف جميع نتائج الطلاب نهائياً؟")) return;
+            localStorage.removeItem('exam1_results_kharashah');
+            if (isFirebaseConfigured && db) {
+                db.ref('exam_results_unit3').remove().then(loadTeacherDashboard);
+            } else {
+                loadTeacherDashboard();
+            }
+        });
+
+        document.getElementById('exitTeacherBtn').addEventListener('click', () => {
+            showSection('coverSection');
+        });
+    </script>
+</body>
+</html>
